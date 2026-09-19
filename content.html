@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Content Planner — {{event.name}}{% endblock %}{% block content %}
+<div class="page-head"><div><div class="eyebrow">PROMOTION</div><h1>Content Planner</h1><p>AI placed promotional activities into the event timeline.</p></div></div>
+<div class="calendar-list">{% for c in contents %}<div class="content-card"><div class="date-box"><b>{{c.post_date.strftime('%d') if c.post_date else '—'}}</b><span>{{c.post_date.strftime('%b') if c.post_date else ''}}</span></div><div class="content-main"><div><span class="tag">{{c.platform}}</span><h2>{{c.title}}</h2><p>{{c.caption}}</p></div><div class="content-meta"><span>Owner: <b>{{c.owner}}</b></span><span class="pill pending">{{c.status}}</span></div></div></div>{% else %}<div class="empty">No content items yet.</div>{% endfor %}</div>
+{% endblock %}

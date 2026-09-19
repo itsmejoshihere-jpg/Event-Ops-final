@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}AI Insights — {{event.name}}{% endblock %}{% block content %}
+<div class="page-head"><div><div class="eyebrow">INTELLIGENCE LAYER</div><h1>AI Insights</h1><p>The system continuously analyzes workflow health, dependencies, workload and registration signals.</p></div></div>
+<div class="ai-hero"><span class="spark">✦</span><div><h2>AI workflow monitor</h2><p>Signals are generated from live event data. In a production deployment, an LLM can enrich these recommendations further.</p></div></div>
+<div class="grid-2"><div class="panel"><h2>Detected signals</h2>{% for a in alerts %}<div class="alert {{a.kind}}"><b>{{a.title}}</b><span>{{a.message}}</span></div>{% endfor %}</div><div class="panel"><h2>What the AI can answer</h2><div class="suggestion">“What should I work on today?”</div><div class="suggestion">“What is blocking the event?”</div><div class="suggestion">“Who needs follow-up?”</div><div class="suggestion">“Are we on track?”</div></div></div>
+{% endblock %}

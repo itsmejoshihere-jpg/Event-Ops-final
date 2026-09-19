@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Analytics — EventOps AI{% endblock %}{% block content %}
+<div class="page-head"><div><div class="eyebrow">DATA ANALYSIS & DECISION SUPPORT</div><h1>Business intelligence</h1><p>One view across demand, execution, support and business opportunities.</p></div></div>
+<div class="stats"><div class="stat"><span>Registrations</span><b>{{metrics.registrations}} / {{metrics.target}}</b></div><div class="stat"><span>Task completion</span><b>{{metrics.completion}}%</b></div><div class="stat"><span>Open support</span><b>{{metrics.open_tickets}}</b></div><div class="stat"><span>Weighted pipeline</span><b>₹{{'{:,.0f}'.format(metrics.weighted_pipeline)}}</b></div></div>
+<div class="panel"><div class="section-head"><h2>KPI scorecard</h2></div>{% for k in kpis %}<div class="list-row"><div><b>{{k.name}}</b><small>{{k.period}}</small></div><span>{{k.value}}{{k.unit}} / {{k.target}}{{k.unit}}</span></div>{% endfor %}</div>
+<div class="panel"><div class="section-head"><h2>AI decision signals</h2></div>{% for a in insights %}<div class="alert {{a.kind}}"><b>{{a.title}}</b><span>{{a.message}}</span></div>{% else %}<div class="empty">No signals.</div>{% endfor %}</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Team — {{event.name}}{% endblock %}{% block content %}
+<div class="page-head"><div><div class="eyebrow">EVENT WORKSPACE</div><h1>Team</h1><p>Roles, responsibilities and AI-visible workload.</p></div></div>
+<div class="team-grid">{% for m in members %}{% set ts=taskmap[m.name] %}{% set pending=ts|selectattr('status','ne','Completed')|list|length %}<div class="panel member-card"><div class="member-avatar">{{m.name[0]|upper}}</div><h2>{{m.name}}</h2><span class="tag">{{m.role or 'Team member'}}</span><p>{{m.responsibilities or 'Responsibilities not specified.'}}</p><div class="member-stats"><span><b>{{ts|length}}</b> total</span><span><b>{{pending}}</b> pending</span></div>{% if pending>=5 %}<div class="alert warning"><b>AI workload flag</b><span>High number of pending tasks.</span></div>{% endif %}</div>{% endfor %}</div>
+{% endblock %}

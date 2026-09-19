@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Business Operations Hub — EventOps AI{% endblock %}{% block content %}
+<div class="page-head"><div><div class="eyebrow">AI BUSINESS OPERATIONS</div><h1>One workspace. Seven business areas.</h1><p>Connect customer support, documents, people, workflows, sales, analytics and internal operations.</p></div></div>
+<div class="stats"><div class="stat"><span>Support tickets</span><b>{{tickets}}</b></div><div class="stat"><span>Documents processed</span><b>{{docs}}</b></div><div class="stat"><span>Business opportunities</span><b>{{deals}}</b></div><div class="stat"><span>Internal requests</span><b>{{requests}}</b></div></div>
+<div class="grid-2">
+<div class="panel"><div class="section-head"><h2>Customer support</h2><a href="{{url_for('support_page',event_id=event.id)}}">Open →</a></div><p>AI triage, priority detection, routing and support queue tracking.</p></div>
+<div class="panel"><div class="section-head"><h2>Document & information processing</h2><a href="{{url_for('documents_page',event_id=event.id)}}">Open →</a></div><p>Capture document text, summarize it and detect important fields.</p></div>
+<div class="panel"><div class="section-head"><h2>Employee productivity</h2><a href="{{url_for('team_page',event_id=event.id)}}">Open →</a></div><p>Workload visibility, task ownership, deadlines and AI workload signals.</p></div>
+<div class="panel"><div class="section-head"><h2>Workflow automation</h2><a href="{{url_for('automations',event_id=event.id)}}">Open →</a></div><p>Dependencies, overdue detection, reminders, escalation and action tracking.</p></div>
+<div class="panel"><div class="section-head"><h2>Sales & business operations</h2><a href="{{url_for('sales_page',event_id=event.id)}}">Open →</a></div><p>Pipeline, deal value, probability, next actions and follow-up dates.</p></div>
+<div class="panel"><div class="section-head"><h2>Data analysis & decision support</h2><a href="{{url_for('analytics_page',event_id=event.id)}}">Open →</a></div><p>KPIs and AI-generated signals across registrations, support, work and pipeline.</p></div>
+<div class="panel"><div class="section-head"><h2>Internal enterprise tools</h2><a href="{{url_for('internal_page',event_id=event.id)}}">Open →</a></div><p>Centralize internal requests, approvals, owners and deadlines.</p></div>
+</div>
+<div class="panel"><div class="section-head"><h2>AI cross-functional insights</h2></div>{% for a in insights %}<div class="alert {{a.kind}}"><b>{{a.title}}</b><span>{{a.message}}</span></div>{% else %}<div class="empty">No insights yet.</div>{% endfor %}</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}EventOps AI{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+{% if current_user %}
+<div class="app-shell">
+<aside class="sidebar">
+<div class="brand"><span class="brand-mark">✦</span><span>EventOps <b>AI</b></span></div>
+<nav>
+<a href="{{url_for('dashboard')}}">⌂ <span>Dashboard</span></a>
+{% if event is defined and event %}
+<div class="nav-label">EVENT</div>
+<a href="{{url_for('event_overview',event_id=event.id)}}">◉ <span>Overview</span></a>
+<a href="{{url_for('business_hub',event_id=event.id)}}">▦ <span>Business Hub</span></a>
+<a href="{{url_for('tasks_page',event_id=event.id)}}">✓ <span>Tasks</span></a>
+<a href="{{url_for('content_page',event_id=event.id)}}">▣ <span>Content Planner</span></a>
+<a href="{{url_for('outreach',event_id=event.id)}}">◎ <span>Outreach</span></a>
+<a href="{{url_for('team_page',event_id=event.id)}}">♟ <span>Team</span></a>
+<a href="{{url_for('registrations',event_id=event.id)}}">◫ <span>Registrations</span></a>
+<a href="{{url_for('ai_page',event_id=event.id)}}">✦ <span>AI Insights</span></a>
+<a href="{{url_for('automations',event_id=event.id)}}">⚡ <span>Automation Center</span></a>
+<a href="{{url_for('support_page',event_id=event.id)}}">◌ <span>Customer Support</span></a>
+<a href="{{url_for('documents_page',event_id=event.id)}}">▤ <span>Documents</span></a>
+<a href="{{url_for('sales_page',event_id=event.id)}}">₹ <span>Sales & Business</span></a>
+<a href="{{url_for('analytics_page',event_id=event.id)}}">◫ <span>Analytics</span></a>
+<a href="{{url_for('internal_page',event_id=event.id)}}">⚙ <span>Internal Tools</span></a>
+{% endif %}
+</nav>
+<div class="sidebar-bottom">
+<a href="{{url_for('new_event')}}" class="new-event">＋ New Event</a>
+<a href="{{url_for('logout')}}">↪ <span>Logout</span></a>
+</div>
+</aside>
+<main class="main">
+<header class="topbar">
+<div class="mobile-brand">EventOps AI</div>
+<div class="top-actions"><span>🔔</span><span class="avatar">{{current_user.name[0]|upper}}</span><span>{{current_user.name}}</span></div>
+</header>
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% for category,message in messages %}<div class="toast {{category}}">{{message}}</div>{% endfor %}
+{% endwith %}
+{% block content %}{% endblock %}
+</main>
+</div>
+{% else %}
+{% block public %}{% endblock %}
+{% endif %}
+<script src="{{url_for('static',filename='app.js')}}"></script>
+</body></html>

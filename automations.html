@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Automation Center — {{event.name}}{% endblock %}{% block content %}
+<div class="page-head"><div><div class="eyebrow">AUTOMATION ENGINE</div><h1>Automation Center</h1><p>Detect → assess → notify → escalate. This is where the workflow becomes proactive.</p></div></div>
+<div class="automation-flow"><div><b>01</b><strong>Detect</strong><span>Delay, overload, missed follow-up or dependency issue</span></div><i>→</i><div><b>02</b><strong>Assess</strong><span>Estimate which tasks and deadlines are affected</span></div><i>→</i><div><b>03</b><strong>Act</strong><span>Reminder, owner alert, escalation or follow-up</span></div></div>
+<div class="grid-2"><div class="panel"><h2>Current triggers</h2>{% for a in alerts %}<div class="alert {{a.kind}}"><b>{{a.title}}</b><span>{{a.message}}</span></div>{% endfor %}</div><div class="panel"><h2>Activity log</h2>{% for x in activities %}<div class="activity"><span class="dot"></span><div><b>{{x.message}}</b><small>{{x.created_at.strftime('%d %b %Y %H:%M')}}</small></div></div>{% endfor %}</div></div>
+{% endblock %}
